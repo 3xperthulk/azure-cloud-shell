@@ -144,7 +144,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     network_interface_ids = [element(azurerm_network_interface.myterraformnic.*.id, count.index)]
     size                  = "Standard_B2ms"
     computer_name         = "kafka${count.index}"
-    admin_username        = "azureuser"
+    admin_username        = "kafkaadmin"
     disable_password_authentication = true
 
     os_disk {
