@@ -1,10 +1,10 @@
 provider "azurerm" {
   features {}
 
-  subscription_id = "b028acdd-dae0-4df2-afb7-3a57791708c6"
-  client_id       = "04535df2-6eb0-4ab4-ac19-344429f78af9"
-  client_secret   = "o324cTgFoR1gpwOar8SwI6lWHwSew~uPCF"  
-  tenant_id       = "e6bde29d-01b4-4c10-8018-b989d95736df"
+  subscription_id = "9bde6b2b-746f-4f27-b834-5e01a41852be"
+  client_id       = "3bc1415a-6c4b-4096-bfd8-a16a52382ba8"
+  client_secret   = "5h9owKScX3UHaCwm7~yU3Bz-IIzf~hn-kQ"
+  tenant_id       = "551f6eb5-b7d2-4fc2-891e-dd192fa7eee8"
 }
 
 # Create a resource group if it doesn't exist
@@ -162,7 +162,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
 
 
     admin_ssh_key {
-        username       = "azureuser"
+        username       = "kafkaadmin"
         public_key     = file("~/.ssh/id_rsa.pub")
     }
     boot_diagnostics {
