@@ -39,7 +39,7 @@ resource "azurerm_subnet" "myterraformsubnet" {
 
 # Create public IPs
 resource "azurerm_public_ip" "myterraformpublicip" {
-    count                        = 3
+    count                        = 1
     name                         = "myPublicIP${count.index}"
     location                     = "eastus"
     resource_group_name          = azurerm_resource_group.myterraformgroup.name
@@ -87,7 +87,7 @@ resource "azurerm_network_security_group" "myterraformnsg" {
 
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
-    count                     = 3
+    count                     = 1
     name                      = "myNIC${count.index}"
     location                  = "eastus"
     resource_group_name       = azurerm_resource_group.myterraformgroup.name
@@ -107,7 +107,7 @@ resource "azurerm_network_interface" "myterraformnic" {
 
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "myterraformnic" {
-    count = 3
+    count = 1
     network_interface_id      = azurerm_network_interface.myterraformnic.*.id[count.index]
     network_security_group_id = azurerm_network_security_group.myterraformnsg.id
 }
@@ -137,12 +137,12 @@ resource "azurerm_storage_account" "mystorageaccount" {
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
-    count                 = 3
+    count                 = 1
     name                  = "kafka${count.index}"
     location              = "eastus"
     resource_group_name   = azurerm_resource_group.myterraformgroup.name
     network_interface_ids = [element(azurerm_network_interface.myterraformnic.*.id, count.index)]
-    size                  = "Standard_B2ms"
+    size                  = "Standard_B4ms"
     computer_name         = "kafka${count.index}"
     admin_username        = "kafkaadmin"
     disable_password_authentication = true
